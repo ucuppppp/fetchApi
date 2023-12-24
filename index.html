@@ -6,9 +6,34 @@
     <title>Fetch Data API</title>
   </head>
   <body>
+    <div class="content">
+      <table>
+        <form action="" method="post" enctype="multipart/form-data" name="myForm" id="myForm" class="myForm">
+          <tr>
+            <td><label for="image">Image</label></td>
+            <td><input type="file" name="image" id="image"></td>
+          </tr>
+          <tr>
+            <td><label for="title"> Title : </label></td>
+            <td><input type="text" name="title" id="title"></td>
+          </tr>
+          <tr>
+            <td><label for="newsContent">Content : </label></td>
+            <td><input type="text" name="newsContent" id="newsContent"></td>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" name="submit" id="submit">Submit</button>
+            </td>
+          </tr>
+        </form>
+      </table>
+    </div>
+
+<br><br><br>
+
     <table border="1" cellpadding="5">
       <thead>
-
         <tr>
           <th>No</th>
           <th>Judul</th>
