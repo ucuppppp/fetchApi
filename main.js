@@ -2,17 +2,17 @@ const endPoint = "http://restapi.test/api/posts"
 const endPoint2 = "http://restapi.test/api/post"
 const endPointLogin = "http://restapi.test/api/login";
 const endPointLogout = "http://restapi.test/api/logout";
-const token = "25|rc87yHqAYRaNXm2EkwLbcdJeDQMp1scGPx47hiQlcf017c90";
-// const isi = document.querySelector('tbody')
-// // fetch(endpoint)
-// //   .then((response) => response.json())
-// //   .then(data => console.log(data))
+const token = "34|jm69dBBMXlVPuL59VMse8r7xb9jR2gFb5bBNUEld08fca156";
+const isi = document.querySelector('tbody')
+// fetch(endpoint)
+//   .then((response) => response.json())
+//   .then(data => console.log(data))
 // let postData = []
 
 
 // async function hitAPI(){
 //     try{
-//         const api = await fetch(endPoint)s
+//         const api = await fetch(endPoint)
 //         const {data} = await api.json()
 //         // console.log(data)
 //         loadPostData(data)
@@ -108,16 +108,17 @@ const token = "25|rc87yHqAYRaNXm2EkwLbcdJeDQMp1scGPx47hiQlcf017c90";
 
 
 
-const getData = async () => {
-    try {
-        const fetchh = await fetch("http://restapi.test/api/posts")
-        const datas = await fetchh.json()
-        console.log(datas)
-    } catch (err) {
-        console.log(err)
-    }
-}
+// const getData = async () => {
+//     try {
+//         const fetchh = await fetch("http://restapi.test/api/posts")
+//         const datas = await fetchh.json()
+//         console.log(datas)
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
+// getData()
 
 
 const login = async () => {
@@ -143,52 +144,89 @@ const login = async () => {
 }
 
 
-const logout = async () => {
-  try{
-  $logout = await fetch(endPointLogout, {
-    method:"POST",
-    headers:{
-      'Content-Type':'application/json',
-      'Authorization':`Bearer ${token}`
-    }
-  });
-} catch (err){
-  console.log(err)
-}
-}
+// const logout = async () => {
+//   try{
+//   $logout = await fetch(endPointLogout, {
+//     method:"POST",
+//     headers:{
+//       'Content-Type':'application/json',
+//       'Authorization':`Bearer ${token}`
+//     }
+//   });
+// } catch (err){
+//   console.log(err)
+// }
+// }
 
 
-// const create = async () => {
-  const form = document.querySelector('.myForm')
-  const title = document.querySelector('#title')
-  const newsContent = document.querySelector('#newsContent')
-  const image = document.querySelector('#image')
-
-
-
-  form.addEventListener('submit', async function(e) {
+const create = async () => {
+  const form = document.querySelector(".myForm");
+  const title = document.querySelector("#title");
+  const newsContent = document.querySelector("#newsContent");
+  const imageInput = document.querySelector("#image"); 
+  form.addEventListener("submit", async function (e) {
     e.preventDefault();
-    try{
-    const request = await fetch(endPoint2, {
-      method: "POST",
-      headers:{
-        Accept: "application/json, */*",
-        "Content-Type" : "application/json",
-        "Authorization" : `Bearer ${token}`
-      },
-      body:JSON.stringify({
-        title: `${title.value}`,
-        image: `${image.value}`,
-        newsContent: `${newsContent.value}`,
-      })
-    });
-    const response = await request.json();
-    console.log(response)
+
+    const formData = new FormData();
+    formData.append("title", title.value);
+    formData.append("newsContent", newsContent.value);
+    // imageInput.files[0];
+    formData.append("image", imageInput.files[0]);
+    // console.log(imageInput.files)
+
+    try {
+      const request = await fetch(endPoint2, {
+        method: "POST",
+        headers: {
+          Accept: "application/json, */*",
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const response = await request.json();
+      console.log(response);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   });
+};
+
+const update = async () => {
+  const form = document.querySelector(".myForm");
+  const title = document.querySelector("#title");
+  const newsContent = document.querySelector("#newsContent");
+  const imageInput = document.querySelector("#image"); 
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title.value);
+    formData.append("newsContent", newsContent.value);
+    // imageInput.files[0];
+    formData.append("image", imageInput.files[0]);
+    // console.log(imageInput.files)
+
+    try {
+      const request = await fetch(endPoint2, {
+        method: "POST",
+        headers: {
+          Accept: "application/json, */*",
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      const response = await request.json();
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+};
+
 
 
 // login()
 // create()
+// hitAPI()
